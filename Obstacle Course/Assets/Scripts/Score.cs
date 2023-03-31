@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
-    [SerializeField] private int _hits = 0;
+    [SerializeField] private int _hits = 5;
    
    private void OnCollisionEnter(Collision other)
    {
        if(other.gameObject.tag != "Hit")
        {
-           _hits++;
+           _hits--;
        }
    }
 }
