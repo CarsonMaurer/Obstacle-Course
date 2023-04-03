@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public GameObject StartScreen;
+    public GameObject GameOverScreen;
+    
     
     void Start()
     {
@@ -13,15 +15,12 @@ public class LevelManager : MonoBehaviour
          Time.timeScale = 0;
     }
 
-     public void GameOver()
-    {
-      
-       
-    }
+     
     public void PlayAgainPressed()
     {
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameOverScreen.SetActive(false);
          Time.timeScale = 1;
     }
 
