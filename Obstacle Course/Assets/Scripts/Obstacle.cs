@@ -9,6 +9,7 @@ public class Obstacle : MonoBehaviour
          if(other.gameObject.CompareTag("Player"))
         {
             gameObject.tag = "Hit";
+            Debug.Log("Hit");
         }
     }
 }
