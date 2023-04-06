@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f; // Speed of movement
-    public float jumpForce = 10f; // Force of jump
+    public float moveSpeed = 5f; 
+    public GameObject YouWonPanel;
+    public float jumpForce = 10f; 
     private Rigidbody rb;
-    private bool isGrounded = true; // Flag for checking if player is on the ground
+    [SerializeField] private bool isGrounded = true; 
 
     void Start()
     {
@@ -14,16 +15,16 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Move forward
+       
         Vector3 forwardMovement = transform.forward * moveSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + forwardMovement);
 
-        // Move left or right
+        
         float horizontalInput = Input.GetAxis("Horizontal");
         Vector3 horizontalMovement = transform.right * horizontalInput * moveSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + horizontalMovement);
 
-        // Check for jumping
+        
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -37,5 +38,23 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
         }
+
+    }
+      private void OnTriggerEnter(Collider other)
+      {
+        if(other.gameObject.CompareTag("Endpoint"))
+        {
+           YouWon();
+        }
+      }
+  
+        
+    
+    public void YouWon()
+    {
+       
+        Time.timeScale = 0;
+        YouWonPanel.SetActive(true);
+    
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Endpoint
   - Ground
   - Obstacle
+  - Item
   layers:
   - Default
   - TransparentFX

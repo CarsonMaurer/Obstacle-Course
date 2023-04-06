@@ -4,13 +4,26 @@ using UnityEngine.SceneManagement;
 public class Endgame : MonoBehaviour
 {
     public GameObject gameOverScreen;
+    public GameObject StartScreen;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
+{
+    if (collision.gameObject.CompareTag("Obstacle"))
     {
-        if (other.CompareTag("Obstacle"))
-        {
-            EndGame();
-        }
+        EndGame();
+    }
+}
+    void Start()
+    {
+         StartScreen.SetActive(true);
+         Time.timeScale = 0;
+    }
+    public void PlayButton()
+    {
+
+         StartScreen.SetActive(false);
+         Time.timeScale = 1;
+         
     }
 
     private void EndGame()
